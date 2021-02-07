@@ -1,24 +1,36 @@
 import logo from './logo.svg';
 import './App.css';
+import React, {useState} from "react";
+import Home from './Components/Home/Home';
+import Footer from './Components/Footer/Footer';
+import Header from './Components/Header/Header';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container } from "react-bootstrap";
+import Data from './Components/Data';
 
 function App() {
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [isAuth, setIsAuth] = useState(false);
+    const [userdata , setUserdata] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header isAuth = {isAuth} setIsAuth={setIsAuth} userdata={userdata} />
+        <Container  style={{minHeight:"80vh"}}>
+          <Home
+            name={name} 
+            userdata={userdata}
+            setUserdata={setUserdata}
+            password={password}
+            setName={setName}
+            setPassword={setPassword}
+            isAuth = {isAuth}
+            setIsAuth={setIsAuth} 
+          />
+        </Container>
+      <Footer/>
+    </>
   );
 }
 
